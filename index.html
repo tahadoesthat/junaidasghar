@@ -141,7 +141,7 @@
                     <a href="#skills" class="text-white hover:text-highlight transition-colors font-medium text-sm tracking-wide"><span class="text-highlight">03.</span> Skills</a>
                     <a href="#contact" class="text-white hover:text-highlight transition-colors font-medium text-sm tracking-wide"><span class="text-highlight">04.</span> Contact</a>
                     
-                    <a href="Junaid_Resume.pdf" download class="px-5 py-2 border border-highlight text-highlight font-medium text-sm rounded hover:bg-highlight hover:bg-opacity-10 transition-all">
+                    <a href="Junaid_Resume.pdf" download class="px-5 py-2 border border-highlight text-highlight font-medium text-sm rounded hover:bg-highlight hover:text-white hover:shadow-[0_0_15px_rgba(59,130,246,0.8)] transition-all duration-300">
                         Resume
                     </a>
                 </div>
@@ -162,7 +162,7 @@
                 <a href="#experience" class="block py-2 text-white hover:text-highlight">Experience</a>
                 <a href="#skills" class="block py-2 text-white hover:text-highlight">Skills</a>
                 <a href="#contact" class="block py-2 text-white hover:text-highlight">Contact</a>
-                <a href="Junaid_Resume.pdf" download class="block w-full text-center mt-4 px-5 py-3 bg-highlight text-white font-bold rounded">
+                <a href="Junaid_Resume.pdf" download class="block w-full text-center mt-4 px-5 py-3 bg-highlight text-white font-bold rounded hover:shadow-[0_0_15px_rgba(59,130,246,0.8)] transition-all">
                     Download Resume
                 </a>
             </div>
@@ -178,7 +178,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="max-w-4xl">
                 <p class="reveal text-highlight font-medium mb-4 tracking-wider">Hi, my name is</p>
-                <!-- Added break-words and adjusted font size for mobile -->
                 <h1 class="reveal delay-100 text-4xl sm:text-5xl md:text-7xl font-heading font-bold text-white mb-4 leading-tight break-words">
                     Muhammad Junaid Asghar.
                 </h1>
@@ -189,17 +188,20 @@
                     I'm a Full-Stack Developer and AWS Certified Cloud Practitioner specializing in building exceptional digital experiences. From scalable backend infrastructure to engaging B2B marketing strategies, I bridge the gap between code and business growth.
                 </p>
                 <div class="reveal delay-400 flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="px-8 py-4 bg-highlight text-white font-bold rounded hover:bg-blue-600 transition-all transform hover:-translate-y-1 hover:shadow-lg shadow-blue-500/20 text-center">
+                    <!-- Added w-full sm:w-auto to fix mobile alignment -->
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-highlight text-white font-bold rounded hover:bg-blue-600 transition-all transform hover:-translate-y-1 hover:shadow-lg shadow-blue-500/20 text-center">
                         Get In Touch
                     </a>
-                    <a href="#experience" class="px-8 py-4 border border-white text-white font-bold rounded hover:bg-white hover:text-navy-900 transition-all transform hover:-translate-y-1 text-center">
+                    <!-- Added w-full sm:w-auto to fix mobile alignment -->
+                    <a href="#experience" class="w-full sm:w-auto px-8 py-4 border border-white text-white font-bold rounded hover:bg-white hover:text-navy-900 transition-all transform hover:-translate-y-1 text-center">
                         View Experience
                     </a>
                 </div>
             </div>
         </div>
         
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-2xl animate-bounce-slow">
+        <!-- Hidden on small screens (hidden md:block) to prevent overlapping -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-2xl animate-bounce-slow hidden md:block">
             <a href="#about"><i class="fa-solid fa-chevron-down"></i></a>
         </div>
     </section>
@@ -244,7 +246,6 @@
                         <div class="absolute inset-0 border-2 border-highlight rounded transition-transform transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 z-0"></div>
                         <!-- Image Container with Junaid's Photo -->
                         <div class="absolute inset-0 bg-navy-600 rounded overflow-hidden z-10 filter hover:filter-none transition-all duration-300 grayscale group-hover:grayscale-0">
-                            <!-- ADDED JUNAID.JPG HERE -->
                             <img src="junaid.jpg" alt="Muhammad Junaid Asghar" class="w-full h-full object-cover">
                         </div>
                     </div>
