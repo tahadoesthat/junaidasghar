@@ -120,7 +120,7 @@
 <body class="font-sans text-slate bg-navy-900 selection:bg-highlight selection:text-white overflow-x-hidden">
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-navy-900 px-6 py-3 rounded-full font-bold shadow-2xl z-50 transition-all duration-300 opacity-0 translate-y-10">
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-navy-900 px-6 py-3 rounded-full font-bold shadow-2xl z-50 transition-all duration-300 opacity-0 translate-y-10 w-max max-w-[90%] text-center">
         <i class="fa-solid fa-check-circle text-green-500 mr-2"></i> Copied to clipboard!
     </div>
 
@@ -178,20 +178,21 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="max-w-4xl">
                 <p class="reveal text-highlight font-medium mb-4 tracking-wider">Hi, my name is</p>
-                <h1 class="reveal delay-100 text-5xl md:text-7xl font-heading font-bold text-white mb-4 leading-tight">
+                <!-- Added break-words and adjusted font size for mobile -->
+                <h1 class="reveal delay-100 text-4xl sm:text-5xl md:text-7xl font-heading font-bold text-white mb-4 leading-tight break-words">
                     Muhammad Junaid Asghar.
                 </h1>
-                <h2 class="reveal delay-200 text-4xl md:text-6xl font-heading font-bold text-slate mb-8 leading-tight">
+                <h2 class="reveal delay-200 text-3xl sm:text-4xl md:text-6xl font-heading font-bold text-slate mb-8 leading-tight">
                     I build <span class="text-gradient typing-cursor" id="typing-text"></span>
                 </h2>
                 <p class="reveal delay-300 text-lg md:text-xl text-slate max-w-2xl mb-12 leading-relaxed">
                     I'm a Full-Stack Developer and AWS Certified Cloud Practitioner specializing in building exceptional digital experiences. From scalable backend infrastructure to engaging B2B marketing strategies, I bridge the gap between code and business growth.
                 </p>
-                <div class="reveal delay-400 flex flex-wrap gap-4">
-                    <a href="#contact" class="px-8 py-4 bg-highlight text-white font-bold rounded hover:bg-blue-600 transition-all transform hover:-translate-y-1 hover:shadow-lg shadow-blue-500/20">
+                <div class="reveal delay-400 flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="px-8 py-4 bg-highlight text-white font-bold rounded hover:bg-blue-600 transition-all transform hover:-translate-y-1 hover:shadow-lg shadow-blue-500/20 text-center">
                         Get In Touch
                     </a>
-                    <a href="#experience" class="px-8 py-4 border border-white text-white font-bold rounded hover:bg-white hover:text-navy-900 transition-all transform hover:-translate-y-1">
+                    <a href="#experience" class="px-8 py-4 border border-white text-white font-bold rounded hover:bg-white hover:text-navy-900 transition-all transform hover:-translate-y-1 text-center">
                         View Experience
                     </a>
                 </div>
@@ -241,12 +242,10 @@
                     <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
                         <!-- Border frame -->
                         <div class="absolute inset-0 border-2 border-highlight rounded transition-transform transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 z-0"></div>
-                        <!-- Image Container -->
+                        <!-- Image Container with Junaid's Photo -->
                         <div class="absolute inset-0 bg-navy-600 rounded overflow-hidden z-10 filter hover:filter-none transition-all duration-300 grayscale group-hover:grayscale-0">
-                            <!-- Placeholder for user image -->
-                            <div class="w-full h-full bg-navy-700 flex items-center justify-center text-6xl text-highlight">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
+                            <!-- ADDED JUNAID.JPG HERE -->
+                            <img src="junaid.jpg" alt="Muhammad Junaid Asghar" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -262,6 +261,7 @@
                 <div class="h-[1px] bg-navy-600 flex-grow max-w-xs"></div>
             </div>
 
+            <!-- Adjusted padding for mobile mobile alignment -->
             <div class="reveal delay-100 relative border-l-2 border-navy-600 ml-3 md:ml-6 space-y-12">
                 
                 <!-- Job 1 -->
@@ -271,9 +271,9 @@
                     <h4 class="text-lg font-medium text-slate mb-1">Rational Mark</h4>
                     <span class="text-sm font-mono text-slate mb-4 block">Recent</span>
                     <ul class="list-none space-y-2 text-slate text-sm">
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Developed dynamic, responsive UIs using React, Angular, HTML, CSS.</li>
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Architected front-end apps with AWS services for scalable backend solutions.</li>
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Optimized server-side functionalities ensuring robust AWS infrastructure communication.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Developed dynamic, responsive UIs using React, Angular, HTML, CSS.</span></li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Architected front-end apps with AWS services for scalable backend solutions.</span></li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Optimized server-side functionalities ensuring robust AWS infrastructure communication.</span></li>
                     </ul>
                 </div>
 
@@ -283,8 +283,8 @@
                     <h3 class="text-xl font-bold text-white group-hover:text-highlight transition-colors">Assistant Branch Manager</h3>
                     <h4 class="text-lg font-medium text-slate mb-1">Bin Aziz Tourism & Consultants</h4>
                     <ul class="list-none space-y-2 text-slate text-sm">
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Managed international/domestic flight queries and operations.</li>
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Handled B2B & B2C management and overseas client relations.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Managed international/domestic flight queries and operations.</span></li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Handled B2B & B2C management and overseas client relations.</span></li>
                     </ul>
                 </div>
 
@@ -294,8 +294,8 @@
                     <h3 class="text-xl font-bold text-white group-hover:text-highlight transition-colors">General Manager</h3>
                     <h4 class="text-lg font-medium text-slate mb-1">Matab Siddiqui</h4>
                     <ul class="list-none space-y-2 text-slate text-sm">
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Oversaw stocks management and financial operations.</li>
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Managed public relations and brand reputation.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Oversaw stocks management and financial operations.</span></li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Managed public relations and brand reputation.</span></li>
                     </ul>
                 </div>
                 
@@ -305,7 +305,7 @@
                     <h3 class="text-xl font-bold text-white group-hover:text-highlight transition-colors">Customer Support Executive</h3>
                     <h4 class="text-lg font-medium text-slate mb-1">Ibex (Walmart)</h4>
                     <ul class="list-none space-y-2 text-slate text-sm">
-                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Provided top-tier customer support for international Walmart customers.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> <span class="flex-1">Provided top-tier customer support for international Walmart customers.</span></li>
                     </ul>
                 </div>
 
@@ -425,7 +425,7 @@
             <div class="reveal delay-300 flex flex-wrap justify-center gap-6 mb-12">
                 <a href="mailto:mjunaydw@outlook.com" onclick="copyToClipboard(event, 'mjunaydw@outlook.com')" class="flex items-center gap-3 px-6 py-4 bg-navy-700 rounded text-white hover:bg-navy-600 transition-colors cursor-pointer group">
                     <i class="fa-regular fa-envelope text-highlight group-hover:scale-110 transition-transform"></i>
-                    <span>mjunaydw@outlook.com</span>
+                    <span class="break-all">mjunaydw@outlook.com</span>
                 </a>
                 <a href="tel:+923160451527" onclick="copyToClipboard(event, '+923160451527')" class="flex items-center gap-3 px-6 py-4 bg-navy-700 rounded text-white hover:bg-navy-600 transition-colors cursor-pointer group">
                     <i class="fa-solid fa-phone text-highlight group-hover:scale-110 transition-transform"></i>
