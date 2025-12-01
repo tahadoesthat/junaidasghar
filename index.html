@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Junaid Asghar | Web Developer & Cloud Specialist</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#020c1b',
+                            800: '#0a192f',
+                            700: '#112240',
+                            600: '#233554',
+                        },
+                        highlight: '#3b82f6', // Bright Blue for flash
+                        slate: '#8892b0',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 15s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a192f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233554;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+        
+        .glass-nav {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Typing Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* Background Pattern */
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate bg-navy-900 selection:bg-highlight selection:text-white overflow-x-hidden">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-navy-900 px-6 py-3 rounded-full font-bold shadow-2xl z-50 transition-all duration-300 opacity-0 translate-y-10">
+        <i class="fa-solid fa-check-circle text-green-500 mr-2"></i> Copied to clipboard!
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-heading font-extrabold text-2xl text-white tracking-wider border-2 border-highlight px-2 py-1 rounded">
+                        MJA<span class="text-highlight">.</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-white hover:text-highlight transition-colors font-medium text-sm tracking-wide"><span class="text-highlight">01.</span> About</a>
+                    <a href="#experience" class="text-white hover:text-highlight transition-colors font-medium text-sm tracking-wide"><span class="text-highlight">02.</span> Experience</a>
+                    <a href="#skills" class="text-white hover:text-highlight transition-colors font-medium text-sm tracking-wide"><span class="text-highlight">03.</span> Skills</a>
+                    <a href="#contact" class="text-white hover:text-highlight transition-colors font-medium text-sm tracking-wide"><span class="text-highlight">04.</span> Contact</a>
+                    
+                    <a href="Junaid_Resume.pdf" download class="px-5 py-2 border border-highlight text-highlight font-medium text-sm rounded hover:bg-highlight hover:bg-opacity-10 transition-all">
+                        Resume
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-highlight focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-800 absolute w-full shadow-xl border-b border-navy-700">
+            <div class="px-6 pt-4 pb-8 space-y-4">
+                <a href="#about" class="block py-2 text-white hover:text-highlight">About</a>
+                <a href="#experience" class="block py-2 text-white hover:text-highlight">Experience</a>
+                <a href="#skills" class="block py-2 text-white hover:text-highlight">Skills</a>
+                <a href="#contact" class="block py-2 text-white hover:text-highlight">Contact</a>
+                <a href="Junaid_Resume.pdf" download class="block w-full text-center mt-4 px-5 py-3 bg-highlight text-white font-bold rounded">
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative bg-navy-900 bg-grid pt-20">
+        <!-- Background Elements -->
+        <div class="absolute top-20 right-0 w-96 h-96 bg-highlight rounded-full mix-blend-screen filter blur-[128px] opacity-10 animate-float"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-float" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="max-w-4xl">
+                <p class="reveal text-highlight font-medium mb-4 tracking-wider">Hi, my name is</p>
+                <h1 class="reveal delay-100 text-5xl md:text-7xl font-heading font-bold text-white mb-4 leading-tight">
+                    Muhammad Junaid Asghar.
+                </h1>
+                <h2 class="reveal delay-200 text-4xl md:text-6xl font-heading font-bold text-slate mb-8 leading-tight">
+                    I build <span class="text-gradient typing-cursor" id="typing-text"></span>
+                </h2>
+                <p class="reveal delay-300 text-lg md:text-xl text-slate max-w-2xl mb-12 leading-relaxed">
+                    I'm a Full-Stack Developer and AWS Certified Cloud Practitioner specializing in building exceptional digital experiences. From scalable backend infrastructure to engaging B2B marketing strategies, I bridge the gap between code and business growth.
+                </p>
+                <div class="reveal delay-400 flex flex-wrap gap-4">
+                    <a href="#contact" class="px-8 py-4 bg-highlight text-white font-bold rounded hover:bg-blue-600 transition-all transform hover:-translate-y-1 hover:shadow-lg shadow-blue-500/20">
+                        Get In Touch
+                    </a>
+                    <a href="#experience" class="px-8 py-4 border border-white text-white font-bold rounded hover:bg-white hover:text-navy-900 transition-all transform hover:-translate-y-1">
+                        View Experience
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-2xl animate-bounce-slow">
+            <a href="#about"><i class="fa-solid fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <!-- Text Content -->
+                <div class="md:w-3/5">
+                    <div class="reveal flex items-center mb-8">
+                        <span class="text-2xl md:text-3xl font-heading font-bold text-white mr-4"><span class="text-highlight">01.</span> About Me</span>
+                        <div class="h-[1px] bg-navy-600 flex-grow max-w-xs"></div>
+                    </div>
+                    
+                    <div class="reveal delay-100 space-y-4 text-slate">
+                        <p>
+                            Hello! My name is Junaid and I enjoy creating things that live on the internet. My interest in web development started back when I decided to merge my creative design skills with technical problem solving.
+                        </p>
+                        <p>
+                            Fast-forward to today, and I’ve had the privilege of working at <span class="text-highlight">consulting agencies, design firms, and tech startups</span>. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.
+                        </p>
+                        <p>
+                            I am also an <span class="text-white font-bold">AWS Certified Cloud Practitioner</span>, meaning I don't just write code; I understand the infrastructure it lives on.
+                        </p>
+                    </div>
+
+                    <ul class="reveal delay-200 grid grid-cols-2 gap-2 mt-8 text-sm font-medium text-white">
+                        <li class="flex items-center"><i class="fa-solid fa-caret-right text-highlight mr-2"></i> React & Angular</li>
+                        <li class="flex items-center"><i class="fa-solid fa-caret-right text-highlight mr-2"></i> AWS Cloud</li>
+                        <li class="flex items-center"><i class="fa-solid fa-caret-right text-highlight mr-2"></i> TypeScript</li>
+                        <li class="flex items-center"><i class="fa-solid fa-caret-right text-highlight mr-2"></i> Node.js & Linux</li>
+                        <li class="flex items-center"><i class="fa-solid fa-caret-right text-highlight mr-2"></i> Digital Marketing</li>
+                        <li class="flex items-center"><i class="fa-solid fa-caret-right text-highlight mr-2"></i> UI/UX Design</li>
+                    </ul>
+                </div>
+
+                <!-- Image/Card -->
+                <div class="reveal delay-300 md:w-2/5 relative group">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+                        <!-- Border frame -->
+                        <div class="absolute inset-0 border-2 border-highlight rounded transition-transform transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 z-0"></div>
+                        <!-- Image Container -->
+                        <div class="absolute inset-0 bg-navy-600 rounded overflow-hidden z-10 filter hover:filter-none transition-all duration-300 grayscale group-hover:grayscale-0">
+                            <!-- Placeholder for user image -->
+                            <div class="w-full h-full bg-navy-700 flex items-center justify-center text-6xl text-highlight">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-navy-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal flex items-center mb-12">
+                <span class="text-2xl md:text-3xl font-heading font-bold text-white mr-4"><span class="text-highlight">02.</span> Where I've Worked</span>
+                <div class="h-[1px] bg-navy-600 flex-grow max-w-xs"></div>
+            </div>
+
+            <div class="reveal delay-100 relative border-l-2 border-navy-600 ml-3 md:ml-6 space-y-12">
+                
+                <!-- Job 1 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-navy-900 border-2 border-highlight rounded-full group-hover:bg-highlight transition-colors"></div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-highlight transition-colors">Web Developer</h3>
+                    <h4 class="text-lg font-medium text-slate mb-1">Rational Mark</h4>
+                    <span class="text-sm font-mono text-slate mb-4 block">Recent</span>
+                    <ul class="list-none space-y-2 text-slate text-sm">
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Developed dynamic, responsive UIs using React, Angular, HTML, CSS.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Architected front-end apps with AWS services for scalable backend solutions.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Optimized server-side functionalities ensuring robust AWS infrastructure communication.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-navy-900 border-2 border-slate rounded-full group-hover:border-highlight group-hover:bg-highlight transition-colors"></div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-highlight transition-colors">Assistant Branch Manager</h3>
+                    <h4 class="text-lg font-medium text-slate mb-1">Bin Aziz Tourism & Consultants</h4>
+                    <ul class="list-none space-y-2 text-slate text-sm">
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Managed international/domestic flight queries and operations.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Handled B2B & B2C management and overseas client relations.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-navy-900 border-2 border-slate rounded-full group-hover:border-highlight group-hover:bg-highlight transition-colors"></div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-highlight transition-colors">General Manager</h3>
+                    <h4 class="text-lg font-medium text-slate mb-1">Matab Siddiqui</h4>
+                    <ul class="list-none space-y-2 text-slate text-sm">
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Oversaw stocks management and financial operations.</li>
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Managed public relations and brand reputation.</li>
+                    </ul>
+                </div>
+                
+                 <!-- Job 4 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-navy-900 border-2 border-slate rounded-full group-hover:border-highlight group-hover:bg-highlight transition-colors"></div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-highlight transition-colors">Customer Support Executive</h3>
+                    <h4 class="text-lg font-medium text-slate mb-1">Ibex (Walmart)</h4>
+                    <ul class="list-none space-y-2 text-slate text-sm">
+                        <li class="flex items-start"><span class="text-highlight mr-2">▹</span> Provided top-tier customer support for international Walmart customers.</li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <!-- Freelance Projects -->
+            <div class="reveal delay-300 mt-16">
+                 <h3 class="text-xl font-bold text-white mb-6 flex items-center"><i class="fa-solid fa-briefcase text-highlight mr-3"></i> Freelance & Contract Highlights</h3>
+                 <div class="grid md:grid-cols-2 gap-4">
+                     <div class="bg-navy-800 p-4 rounded border border-navy-700 hover:border-highlight transition-colors">
+                         <h4 class="text-white font-bold">Social Media Manager</h4>
+                         <p class="text-sm text-slate">Perfume Palace Company</p>
+                     </div>
+                     <div class="bg-navy-800 p-4 rounded border border-navy-700 hover:border-highlight transition-colors">
+                         <h4 class="text-white font-bold">Client Manager</h4>
+                         <p class="text-sm text-slate">Vesper Design Agency</p>
+                     </div>
+                     <div class="bg-navy-800 p-4 rounded border border-navy-700 hover:border-highlight transition-colors">
+                         <h4 class="text-white font-bold">Query Management</h4>
+                         <p class="text-sm text-slate">Eaxperience Company</p>
+                     </div>
+                     <div class="bg-navy-800 p-4 rounded border border-navy-700 hover:border-highlight transition-colors">
+                         <h4 class="text-white font-bold">Graphic Designer</h4>
+                         <p class="text-sm text-slate">Scents & Aroma Traders</p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal flex items-center mb-12">
+                <span class="text-2xl md:text-3xl font-heading font-bold text-white mr-4"><span class="text-highlight">03.</span> Technical Expertise</span>
+                <div class="h-[1px] bg-navy-600 flex-grow max-w-xs"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Development Card -->
+                <div class="reveal delay-100 bg-navy-700 p-8 rounded shadow-xl hover:-translate-y-2 transition-transform duration-300 border-t-4 border-highlight">
+                    <div class="text-4xl text-highlight mb-6"><i class="fa-solid fa-code"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Web Development</h3>
+                    <p class="text-slate text-sm mb-6">Building fast, responsive, and dynamic web applications.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">React</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Angular</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">TypeScript</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Ionic</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">WordPress</span>
+                    </div>
+                </div>
+
+                <!-- Cloud Card -->
+                <div class="reveal delay-200 bg-navy-700 p-8 rounded shadow-xl hover:-translate-y-2 transition-transform duration-300 border-t-4 border-highlight">
+                    <div class="text-4xl text-highlight mb-6"><i class="fa-solid fa-server"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Cloud & DevOps</h3>
+                    <p class="text-slate text-sm mb-6">Deploying and managing scalable server infrastructure.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">AWS Certified</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Linux (Ubuntu)</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Apache</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Nginx</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Server Setup</span>
+                    </div>
+                </div>
+
+                <!-- Digital/Creative Card -->
+                <div class="reveal delay-300 bg-navy-700 p-8 rounded shadow-xl hover:-translate-y-2 transition-transform duration-300 border-t-4 border-highlight">
+                    <div class="text-4xl text-highlight mb-6"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Digital & Creative</h3>
+                    <p class="text-slate text-sm mb-6">Creating content and strategies that convert.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">B2B/B2C</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Sales Gen</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Adobe Suite</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Canva/CapCut</span>
+                        <span class="px-3 py-1 bg-navy-900 text-highlight text-xs font-mono rounded">Videography</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="py-24 bg-navy-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="reveal text-2xl md:text-3xl font-heading font-bold text-white mb-12">Education & Certifications</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="reveal delay-100 bg-navy-800 p-6 rounded border border-navy-700 hover:border-highlight transition-colors">
+                    <i class="fa-solid fa-graduation-cap text-3xl text-highlight mb-4"></i>
+                    <h3 class="text-white font-bold text-lg">BS Information Technology</h3>
+                    <p class="text-slate text-sm">Virtual University of Pakistan</p>
+                    <span class="text-highlight text-xs font-mono mt-2 block">Ongoing</span>
+                </div>
+                <div class="reveal delay-200 bg-navy-800 p-6 rounded border border-navy-700 hover:border-highlight transition-colors">
+                    <i class="fa-brands fa-aws text-3xl text-highlight mb-4"></i>
+                    <h3 class="text-white font-bold text-lg">AWS Certified Cloud Practitioner</h3>
+                    <p class="text-slate text-sm">Amazon Web Services</p>
+                    <span class="text-highlight text-xs font-mono mt-2 block">Certification</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-navy-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="reveal text-highlight font-mono text-sm mb-4 block">04. What’s Next?</span>
+            <h2 class="reveal delay-100 text-4xl md:text-5xl font-heading font-bold text-white mb-6">Get In Touch</h2>
+            <p class="reveal delay-200 text-slate text-lg max-w-xl mx-auto mb-12">
+                I am currently looking for new opportunities in Web Development and Cloud Infrastructure. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
+            </p>
+
+            <div class="reveal delay-300 flex flex-wrap justify-center gap-6 mb-12">
+                <a href="mailto:mjunaydw@outlook.com" onclick="copyToClipboard(event, 'mjunaydw@outlook.com')" class="flex items-center gap-3 px-6 py-4 bg-navy-700 rounded text-white hover:bg-navy-600 transition-colors cursor-pointer group">
+                    <i class="fa-regular fa-envelope text-highlight group-hover:scale-110 transition-transform"></i>
+                    <span>mjunaydw@outlook.com</span>
+                </a>
+                <a href="tel:+923160451527" onclick="copyToClipboard(event, '+923160451527')" class="flex items-center gap-3 px-6 py-4 bg-navy-700 rounded text-white hover:bg-navy-600 transition-colors cursor-pointer group">
+                    <i class="fa-solid fa-phone text-highlight group-hover:scale-110 transition-transform"></i>
+                    <span>+92 316 0451527</span>
+                </a>
+            </div>
+            
+            <a href="mailto:mjunaydw@outlook.com" class="reveal delay-400 inline-block px-10 py-5 border-2 border-highlight text-highlight font-bold rounded hover:bg-highlight hover:text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300">
+                Say Hello
+            </a>
+            
+            <div class="mt-20 flex justify-center space-x-8 text-2xl text-slate">
+                <a href="https://linkedin.com/in/mjunaydw" class="hover:text-highlight hover:-translate-y-1 transition-all"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://tahadoesthat.com/junaidasghar" class="hover:text-highlight hover:-translate-y-1 transition-all"><i class="fa-solid fa-globe"></i></a>
+            </div>
+            
+            <p class="mt-8 text-sm text-slate font-mono">Designed & Built by Muhammad Junaid Asghar</p>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        // Typing Effect
+        const textElement = document.getElementById('typing-text');
+        const words = ["Web Applications.", "Cloud Infrastructure.", "Digital Strategies.", "B2B Solutions."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                setTimeout(type, 2000); // Pause at end of word
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, 500); // Pause before next word
+            } else {
+                setTimeout(type, isDeleting ? 100 : 150); // Typing speed
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Copy to Clipboard
+        function copyToClipboard(e, text) {
+            e.preventDefault(); // Prevent default link behavior if needed (for better UX on desktop)
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('opacity-0', 'translate-y-10');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'translate-y-10');
+                }, 3000);
+            });
+            // Optional: allow default link behavior after copying (e.g. open mail client)
+            setTimeout(() => {
+                 window.location.href = e.currentTarget.href;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
